@@ -50,7 +50,7 @@ export default function MyCar() {
               gutterBottom
             >
               <Typography variant="h5" component="div">
-                Products in my Car
+                Products in my Cart
               </Typography>
 
               <List
