@@ -12,7 +12,7 @@ import { blue } from "@mui/material/colors";
 import Button from "@mui/material/Button";
 import Burguer1 from "./assets/burguer.jpg";
 import NewBanner from "./assets/1.jpg";
-import "./App.css";
+import "./App/App.css";
 import { border, borderColor, flexbox, height, Stack } from "@mui/system";
 import MenuIcon from "@mui/icons-material/Menu";
 import { ShoppingCart } from "@mui/icons-material";

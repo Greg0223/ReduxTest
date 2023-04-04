@@ -2,12 +2,12 @@ import { useState } from "react";
 import "./App.css";
 import { Grid, Box } from "@mui/material";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import MyBanner from "./MyBanner";
-import MyBar from "./MyBar";
-import ProductList from "./ProductList";
-import AddNewProduct from "./AddNewProduct";
-import MyCategories from "./Categories";
-import MyCar from "./Car";
+import MyBanner from "../MyBanner";
+import MyBar from "../MyBar";
+import ProductList from "../ProductList";
+import AddNewProduct from "../AddNewProduct";
+import MyCategories from "../Categories";
+import MyCar from "../Car/Car";
 
 function App() {
   const [showMyCar, setShowMyCar] = useState<number>(0);
@@ -15,7 +15,7 @@ function App() {
   return (
     <BrowserRouter>
       <MyBanner />
-      <MyBar showMyCar={showMyCar} setShowMyCar={setShowMyCar} />
+      <MyBar setShowMyCar={setShowMyCar} />
 
     
         <Box sx={{ display: "flex", position: "relative", justifyContent:"center" }}>

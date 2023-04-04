@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import * as React from "react";
 import { AppBar, Box, Grid, IconButton, Toolbar } from "@mui/material";
-import "./App.css";
+import "./App/App.css";
 import {
   border,
   borderColor,
@@ -68,6 +68,7 @@ const ProductList = () => {
           .map((product, index) => (
             <Grid item xs={2} sm={3} md={2} lg={2} key={index}>
               <CardProductList
+              
                 prop1={product.title}
                 prop2={product.description}
                 prop3={product.price}
