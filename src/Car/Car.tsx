@@ -1,108 +1,86 @@
-import { useEffect, useState } from "react";
 import * as React from "react";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import IconButton from "@mui/material/IconButton";
-import Checkbox from "@mui/material/Checkbox";
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useSelector, useDispatch } from "react-redux";
 import { removeProductFromMyCar, selectProduct } from "./carSlice";
 import { styled } from "@mui/system";
+import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
+import { BorderColorOutlined } from "@mui/icons-material";
 
 const ItemJosmer = styled("div")`
   display: flex;
   justify-content: space-between;
-`
+`;
 const ItemJose = styled("div")`
-  margin:10px;
+  margin: 10px;
   display: flex;
-  width: 10px
-  
-`
+  width: 10px;
+`;
 
 export default function MyCar() {
   const dispatch = useDispatch();
   const prods = useSelector(selectProduct);
   return (
-    <Box sx={{ minWidth: 275, margin: "1px", fontSize: "100px" }}>
-      <Card variant="outlined">
-        <React.Fragment>
-          <CardContent>
+    <Box
+      sx={{
+        maxWidth: "200px",
+        minWidth: "180px",
+        backgroundColor: " white",
+        borderStyle: "outset",
+        marginTop: "8px",
+      }}
+    >
+      <Typography sx={{ textAlign: "center", fontSize: "15" }}>
+        Products
+      </Typography>
+      <Typography>
+        {prods.map((value) => (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "16px",
+              marginLeft: "8px",
+              alignItems: "center",
+            }}
+          >
             <Typography
-              sx={{ fontSize: 14, textAlign: "center" }}
-              color="text.primary"
-              gutterBottom
+              sx={{
+                fontSize: "12px",
+                marginRight: "5px",
+                maxWidth: "120px",
+              }}
             >
-              <Typography variant="h5" component="div">
-                Products in my Cart
-              </Typography>
+              ({value.quant})<span> </span>
+              {value.mytitle}
+            </Typography>
+            <Typography
+              sx={{ fontSize: "12px", display: "flex", alignItems: "center" }}
+            >
+              {value.price} $ <span />
+              <IconButton aria-label="delete" sx={{}}>
+                <DeleteIcon sx={{ fontSize: "15px" }} onClick={() => { dispatch(removeProductFromMyCar(value));}} />
+              </IconButton>
+            </Typography>
+          </Box>
+        ))}
 
-              <List
-                sx={{
-                  width: "100%",
-                  maxWidth: 360,
-                  bgcolor: "background.paper",
-                }}
-              >
-                {prods.map((value) => (
-                  <ItemJosmer className="Josmernoquiereusarenlinea">
-                    <Box>
-                      {value.quant}
-                      <span> </span>
-                      {value.mytitle}
-                      <span> </span>
-                      {value.price}
-                    </Box>
-                    <ItemJose>
-                    <Button
-                      variant="outlined"
-                      sx={{maxwidth:"1px"}}
-                      
-                      onClick={() => {
-                        dispatch(removeProductFromMyCar(value));
-                      }}
-                    >  </Button>
-                    </ItemJose>
-                    
-                  </ItemJosmer>
-                ))}
-              </List>
-            </Typography>
-            <Typography
-              sx={{ display: "flex", justifyContent: "space-between" }}
-            >
-              <Typography variant="h5" component="div">
-                total
-              </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                {prods.reduce(
-                  (totalPrice, curr) => totalPrice + curr.price * curr.quant,
-                  0
-                )}
-              </Typography>
-            </Typography>
-          </CardContent>
-          <CardActions sx={{ display: "flex", justifyContent: "space-around" }}>
-            <Button size="small"> go to pay</Button>
-          </CardActions>
-        </React.Fragment>
-      </Card>
+        <Typography></Typography>
+      </Typography>
+
+      <Typography
+        sx={{ textAlign: "center", fontSize: "20px", marginTop: "20px" }}
+      >
+        Total: <span />
+        {prods.reduce(
+          (totalPrice, curr) => totalPrice + curr.price * curr.quant,
+          0
+        )}
+        $ <span />
+      </Typography>
     </Box>
   );
 }
