@@ -62,7 +62,12 @@ export default function MyCar() {
             >
               {value.price} $ <span />
               <IconButton aria-label="delete" sx={{}}>
-                <DeleteIcon sx={{ fontSize: "15px" }} onClick={() => { dispatch(removeProductFromMyCar(value));}} />
+                <DeleteIcon
+                  sx={{ fontSize: "15px" }}
+                  onClick={() => {
+                    dispatch(removeProductFromMyCar(value));
+                  }}
+                />
               </IconButton>
             </Typography>
           </Box>
