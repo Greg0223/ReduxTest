@@ -8,6 +8,7 @@ import ProductList from "../ProductList";
 import AddNewProduct from "../AddNewProduct";
 import MyCategories from "../Categories";
 import MyCar from "../Car/Car";
+import Basic from "../FormikTest";
 
 function App() {
   const [showMyCar, setShowMyCar] = useState<number>(0);
@@ -16,35 +17,33 @@ function App() {
     <BrowserRouter>
       <MyBanner />
       <MyBar setShowMyCar={setShowMyCar} />
-
-    
-        <Box sx={{ display: "flex", position: "relative", justifyContent:"center" }}>
-          <Routes>
-            <Route path="/ProductList" element={<ProductList />} />
-            <Route path="/Categories" element={<MyCategories />} />
-            <Route path="/AddNewProduct" element={<AddNewProduct />} />
-            <Route path="/MyCar" element={<MyCar />} />
-            <Route
-              path="/Categories/ProductList/:category"
-              element={<ProductList />}
-            />
-          </Routes>
-          {showMyCar === 1 ? (
-            <Box
-              sx={{
-                right:"0",
-                position: "absolute",
-                
-              }}
-            >
-              <MyCar />
-            </Box>
-          ) : (
-            <></>
-          )}
-          
-        </Box>
-      
+      <Basic/>
+      <Box
+        sx={{ display: "flex", position: "relative", justifyContent: "center" }}
+      >
+        <Routes>
+          <Route path="/ProductList" element={<ProductList />} />
+          <Route path="/Categories" element={<MyCategories />} />
+          <Route path="/AddNewProduct" element={<AddNewProduct />} />
+          <Route path="/MyCar" element={<MyCar />} />
+          <Route
+            path="/Categories/ProductList/:category"
+            element={<ProductList />}
+          />
+        </Routes>
+        {showMyCar === 1 ? (
+          <Box
+            sx={{
+              right: "0",
+              position: "absolute",
+            }}
+          >
+            <MyCar />
+          </Box>
+        ) : (
+          <></>
+        )}
+      </Box>
     </BrowserRouter>
   );
 }
